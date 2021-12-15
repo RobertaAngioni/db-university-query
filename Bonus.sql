@@ -48,12 +48,13 @@ on d2.id = s.degree_id
 order by s.surname, s.name asc;
 
 -- BONUS: Selezionare per ogni studente quanti tentativi d’esame ha sostenuto per superare ciascuno dei suoi esami
-select s.name, surname, count(s.enrolment_date) as num_tentativi
+select s.id, s.name, s.surname, count(es.exam_id) as num_tentativi
 from students s 
 left join exam_student es 
 on s.id = es.student_id 
 left join exams e 
 on e.id = es.exam_id 
-group by s.enrolment_date ;
+group by s.id 
+order by s.surname, s.name asc;
 
 
